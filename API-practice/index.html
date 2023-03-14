@@ -7,7 +7,7 @@
 </head>
 
 <body>
-   
+
 
     <img src="#">
     <button id="catbtn">new pic</button>
@@ -17,36 +17,27 @@
         const newCatabtn = document.querySelector("#search");
         const img = document.querySelector('img');
         const newCatBtn = document.querySelector('#catbtn');
-        fetch('https://api.giphy.com/v1/gifs/translate?api_key=8gNQz2BswlEiVYCRHWLV4EZLG5INda7T&s=' + searchfield, {
-            mode: 'cors',
-            credentials: "same-origin"
-        })
-            .then(function (response) {
-
-                return response.json();
+        async function getgifs() {
+            console.log(searchfield)
+            const response = await fetch('https://api.giphy.com/v1/gifs/translate?api_key=8gNQz2BswlEiVYCRHWLV4EZLG5INda7T&s=' + searchfield, {
+                mode: 'cors',
+                credentials: "same-origin"
             })
-            .then(function (response) {
-                img.src = response.data.images.original.url
-            });
-
+            const gifdata = await response.json();
+            img.src = gifdata.data.images.original.url
+        }
+        
         newCatBtn.addEventListener("click", (event) => {
-            fetch('https://api.giphy.com/v1/gifs/translate?api_key=8gNQz2BswlEiVYCRHWLV4EZLG5INda7T&s=' + searchfield, { mode: 'cors' })
-                .then(function (response) {
-
-                    return response.json();
-                })
-                .then(function (response) {
-                    img.src = response.data.images.original.url
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                 });
+            getgifs();
         })
+        
 
         newCatabtn.addEventListener("click", (event) => {
             searchfield = prompt("please enter a catagory");
+            getgifs();
             console.log(searchfield)
         })
+        getgifs();
     </script>
 </body>
 
