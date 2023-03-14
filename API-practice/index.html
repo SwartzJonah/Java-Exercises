@@ -7,6 +7,7 @@
 </head>
 
 <body>
+   
 
     <img src="#">
     <button id="catbtn">new pic</button>
@@ -36,7 +37,10 @@
                 })
                 .then(function (response) {
                     img.src = response.data.images.original.url
-                });
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                 });
         })
 
         newCatabtn.addEventListener("click", (event) => {
