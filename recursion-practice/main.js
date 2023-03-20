@@ -12,5 +12,12 @@ function power(base, exp){
     return base * power(base, exp - 1);
 }
 
-let answer = power(3,5);
+function factorial(n){
+    if (n<=1){
+        return n
+    }
+    return n * factorial(n-1);
+}
+
+let answer = factorial(5)
 console.log(answer);
