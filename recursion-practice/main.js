@@ -79,7 +79,20 @@ let hasIt = contains(nestedObject, 44); // true
 let doesntHaveIt = contains(nestedObject, "foo"); // false
 
 
+function totalIntegers(array){
+    let total = 0;
+    if (array.length === 0){
+        return 0;
+    }
+    let test = array.shift();
+    if(typeof(test) === 'object'){
+        total += totalIntegers(test);
+    } else if (typeof(test) === 'number'){
+        total += 1;
+    }
 
+    return total + totalIntegers(array);
+}
 
-let answer = productOfArray([3,2,5])
+let answer = totalIntegers([[[5], 3], 0, 2, ['foo'], [], [4, [5, 6]]]);
 console.log(answer);
