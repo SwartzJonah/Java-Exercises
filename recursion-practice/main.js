@@ -19,5 +19,25 @@ function factorial(n){
     return n * factorial(n-1);
 }
 
+function all(array, callback){
+    let test = array.slice();
+
+    if(test.length <= 0){
+        return true;
+    }
+    if(callback(test[0])){
+        test.shift();
+        return all(test, callback);
+    } else {
+        return false;
+    }
+}
+
+var allAreLessThanSeven = all([1,2,6,18], function(num){
+	return num < 10;
+});
+
+console.log(allAreLessThanSeven); 
+
 let answer = factorial(5)
 console.log(answer);
