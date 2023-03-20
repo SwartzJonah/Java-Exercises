@@ -37,7 +37,15 @@ var allAreLessThanSeven = all([1,2,6,18], function(num){
 	return num < 10;
 });
 
-console.log(allAreLessThanSeven); 
+function productOfArray(array){
+    let test = array.slice();
+    let number = test[0];
+    if (test.length <= 1){
+        return test[0];
+    }
+    test.shift(); 
+    return number * productOfArray(test)
+}
 
-let answer = factorial(5)
+let answer = productOfArray([3,2,5])
 console.log(answer);
