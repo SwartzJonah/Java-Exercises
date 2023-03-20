@@ -94,5 +94,23 @@ function totalIntegers(array){
     return total + totalIntegers(array);
 }
 
-let answer = totalIntegers([[[5], 3], 0, 2, ['foo'], [], [4, [5, 6]]]);
-console.log(answer);
+function sumSquares(array){
+    let total = 0;
+    if (array.length === 0){
+        return 0;
+    }
+    let test = array.shift();
+    if(typeof(test) === 'object'){
+        
+        total += sumSquares(test);
+    } else if (typeof(test) === 'number'){
+        total += (test*test);
+        
+    }
+
+    return total + sumSquares(array);
+}
+
+
+// let answer = totalIntegers([[[5], 3], 0, 2, ['foo'], [], [4, [5, 6]]]);
+// console.log(answer);
