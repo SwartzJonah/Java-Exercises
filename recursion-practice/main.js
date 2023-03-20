@@ -47,5 +47,39 @@ function productOfArray(array){
     return number * productOfArray(test)
 }
 
+function contains(object, value){
+    for(let child in object){
+        if(typeof object[child] === "object"){
+            return contains(object[child], value);
+        }
+
+        if(object[child] == value){
+            return true;
+        }
+    }
+    return false;
+}
+
+var nestedObject = {
+    data: {
+        info: {
+            stuff: {
+                thing: {
+                    moreStuff: {
+                        magicNumber: 44,
+                        something: 'foo2'
+                    }
+                }
+            }
+        }
+    }
+}
+
+let hasIt = contains(nestedObject, 44); // true
+let doesntHaveIt = contains(nestedObject, "foo"); // false
+
+
+
+
 let answer = productOfArray([3,2,5])
 console.log(answer);
